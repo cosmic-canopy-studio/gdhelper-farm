@@ -1,0 +1,64 @@
+{
+  "farm": {
+    "name": "pnw-farm",
+    "description": "PNW Mystical render farm — Blender/Godot asset pipeline"
+  },
+  "server": {
+    "storage_root": "C:\\RenderFarm",
+    "share_name": "RenderFarm",
+    "jobs_subdir": "Jobs",
+    "output_subdir": "Output"
+  },
+  "flamenco": {
+    "version": "3.9.3",
+    "manager_port": 8080
+  },
+  "shaman": {
+    "enabled": true,
+    "gc_period": "24h0m0s",
+    "gc_max_age": "744h0m0s"
+  },
+  "syncthing": {
+    "api_key": "pnw-farm-fleet-sync-key",
+    "folders": [
+      {"id": "assets", "label": "Assets", "subdir": "Assets"},
+      {"id": "cc5inbox", "label": "CC5Inbox", "subdir": "CC5Inbox"},
+      {"id": "renderjobs", "label": "Jobs", "subdir": "Jobs"},
+      {"id": "output", "label": "Output", "subdir": "Output"}
+    ],
+    "devices": [
+      {
+        "name": "FLAMINGDRAGON",
+        "role": "hub",
+        "id": "XGRPB6R-QNBAIF2-YORV7QM-F64QNCX-P3YUQJK-GYDVGG4-P7B7TAV-JQVRVAB",
+        "address": "tcp://192.168.0.107:22000",
+        "introducer": true
+      },
+      {
+        "name": "SharkTank",
+        "role": "workstation",
+        "id": "5XNLRSE-GNXNR7A-WJIN3IB-DWAXAFS-UTWSMBP-XKCLTXH-INR7ILU-SEN3FQE",
+        "address": "dynamic"
+      },
+      {
+        "name": "monolith",
+        "role": "worker",
+        "id": "X7WRJFJ-EY67OD2-MUTS7HM-2XSB3MF-KSSSUNU-HMYPPC6-VZYN52C-EUP65QP",
+        "address": "tcp://192.168.0.48:22000"
+      }
+    ],
+    "ignore_patterns": ["*.sqlite", "*.sqlite-journal", "*.log", "*.tmp", "logs"]
+  },
+  "blender": {
+    "required_version": "5.2"
+  },
+  "client": {
+    "drive_letter": "R:",
+    "local_staging": "RenderJobs"
+  },
+  "firewall": {
+    "flamenco_port": 8080,
+    "team_render_ports": "5400-5402",
+    "syncthing_port": 22000
+  }
+}
